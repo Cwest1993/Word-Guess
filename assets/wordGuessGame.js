@@ -42,7 +42,7 @@ let wGame = {
         let rebuiltWord = this.word.w
         .split("")
         .map(function(key){
-            if(key===""){
+            if(key===" "){
                 return "\xa0";
             }
             else if(wGame.yesGuess.indexOf(key)>-1){
@@ -54,12 +54,18 @@ let wGame = {
         })
         .join("")
         document.getElementById("guessWord").innerText = rebuiltWord;
-    }
+    },
+
+    guessesLeft: function(){
+        this.guesses = this.word.w.length+2
+        document.getElementById("guessLeft").innerText = "Guesses left: "+this.guesses
+    },
 }
 
 
 wGame.pickWord();
 wGame.rebuildWord();
+wGame.guessesLeft();
 
 document.onkeydown = function(e){
     let key =e.key
