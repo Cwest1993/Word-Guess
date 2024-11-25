@@ -65,6 +65,7 @@ let wGame = {
     checkLetter: function(key){
         this.correctLetter(key);
         this.incorrectLetter(key);
+        this.rebuildWord();
     },
 
     correctLetter: function(key){
@@ -72,6 +73,7 @@ let wGame = {
             this.word.w.indexOf(key)>-1){
             this.yesGuess.push(key)
             console.log("right letters: "+this.yesGuess)
+            this.updateGuesses()
 
         }
         else{
@@ -84,12 +86,19 @@ let wGame = {
            this.noGuess.indexOf(key)===-1){
             this.noGuess.push(key)
             console.log("wrong letters: "+this.noGuess)
+            this.updateGuesses()
+
         }
         else{
             
         }
     },
 
+    updateGuesses: function(){
+        this.guesses--
+        document.getElementById("guessLeft").innerText = "Guesses left: "+this.guesses
+
+    }
 
 }
 
