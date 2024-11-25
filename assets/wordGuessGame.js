@@ -32,6 +32,7 @@ let wGame = {
     word: null,
     alphabet: "abcdefghijklmnopqrstuvwxyz",
     yesGuess: [],
+    noGuess: [],
     
     pickWord: function(){
         this.word = this.wAns[Math.floor(Math.random()*this.wAns.length)]
@@ -60,6 +61,36 @@ let wGame = {
         this.guesses = this.word.w.length+2
         document.getElementById("guessLeft").innerText = "Guesses left: "+this.guesses
     },
+
+    checkLetter: function(key){
+        this.correctLetter(key);
+        this.incorrectLetter(key);
+    },
+
+    correctLetter: function(key){
+        if(this.yesGuess.indexOf(key)===-1&&
+            this.word.w.indexOf(key)>-1){
+            this.yesGuess.push(key)
+            console.log("right letters: "+this.yesGuess)
+
+        }
+        else{
+            
+        }
+    },
+
+    incorrectLetter: function(key){
+        if(this.word.w.indexOf(key)===-1&&
+           this.noGuess.indexOf(key)===-1){
+            this.noGuess.push(key)
+            console.log("wrong letters: "+this.noGuess)
+        }
+        else{
+            
+        }
+    },
+
+
 }
 
 
@@ -71,8 +102,11 @@ document.onkeydown = function(e){
     let key =e.key
     if(wGame.alphabet.includes(key)){
         console.log(key)
+        wGame.checkLetter(key);
+
+        
     }
     else{
-        document.getElementById("wrongWord").innerText = "Please select a valid letter"
+        document.getElementById("wrongGuess").innerText = "Please select a valid letter"
     }
 }
