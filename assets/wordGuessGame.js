@@ -34,6 +34,7 @@ let wGame = {
     yesGuess: [],
     noGuess: [],
     
+    
     pickWord: function(){
         this.word = this.wAns[Math.floor(Math.random()*this.wAns.length)]
         console.log(this.word)
@@ -104,6 +105,24 @@ let wGame = {
        let image = document.getElementById("wordImage");
        image.src = this.word.i;
        image.style.visibility = "hidden";
+    },
+
+    displayImage: function(){
+        let image = document.getElementById("wordImage");
+        image.src = this.word.i;
+        image.style.visibility = "initial";
+    },
+
+    pauseSong: function(){
+        let song = document.getElementById("wordSong");
+        song.src = this.word.s;
+        song.pause();
+    },
+    
+    playSong: function(){
+        let song = document.getElementById("wordSong");
+        song.src = this.word.s;
+        song.play();
     }
 
 }
@@ -125,4 +144,5 @@ document.onkeydown = function(e){
     else{
         document.getElementById("wrongGuess").innerText = "Please select a valid letter"
     }
+
 }
