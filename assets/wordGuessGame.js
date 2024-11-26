@@ -67,6 +67,7 @@ let wGame = {
         this.correctLetter(key);
         this.incorrectLetter(key);
         this.rebuildWord();
+        this.gameLoss();
     },
 
     correctLetter: function(key){
@@ -123,15 +124,47 @@ let wGame = {
         let song = document.getElementById("wordSong");
         song.src = this.word.s;
         song.play();
-    }
+    },
 
+    displayScore: function(){
+        document.getElementById("wGuess").innerText = "Wins: "+this.wCounter;
+        document.getElementById("lGuess").innerText = "Losses: "+this.lCounter;
+    },
+
+    startGame: function(){
+        this.pickWord();
+        this.rebuildWord();
+        this.guessesLeft();
+        this.showHiddenImage();
+        this.displayScore();
+
+    },
+
+    resetGame: function(){
+        this.yesGuess = [];
+        this.noGuess = [];
+        this.pickWord();
+        this.rebuildWord();
+        this.showHiddenImage();
+        this.guessesLeft(); 
+    },
+
+    gameLoss: function(){
+        if(this.guesses===0){
+            this.resetGame();
+            this.lCounter++;
+            this.displayScore();
+            this.pauseSong();
+        }
+        else{
+
+        }
+    }
 }
 
 
-wGame.pickWord();
-wGame.rebuildWord();
-wGame.guessesLeft();
-wGame.showHiddenImage();
+wGame.startGame();
+
 
 document.onkeydown = function(e){
     let key =e.key
@@ -143,6 +176,13 @@ document.onkeydown = function(e){
     }
     else{
         document.getElementById("wrongGuess").innerText = "Please select a valid letter"
+    }
+
+    if(key==="z"){
+        wGame.resetWord();
+    }
+    else{
+
     }
 
 }
