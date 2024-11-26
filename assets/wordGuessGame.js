@@ -68,6 +68,7 @@ let wGame = {
         this.incorrectLetter(key);
         this.rebuildWord();
         this.gameLoss();
+        this.gameWin();
     },
 
     correctLetter: function(key){
@@ -145,7 +146,6 @@ let wGame = {
         this.noGuess = [];
         this.pickWord();
         this.rebuildWord();
-        this.showHiddenImage();
         this.guessesLeft(); 
     },
 
@@ -155,10 +155,26 @@ let wGame = {
             this.lCounter++;
             this.displayScore();
             this.pauseSong();
+            this.showHiddenImage();
         }
         else{
 
         }
+    },
+    
+    gameWin: function(){
+        let correctWord = document.getElementById("guessWord");
+        if(correctWord.innerText.includes("_")){
+
+        }
+        else{
+            this.playSong();
+            this.displayImage();
+            this.resetGame();
+            this.wCounter++
+            this.displayScore();
+        }
+
     }
 }
 
