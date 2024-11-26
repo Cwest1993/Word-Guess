@@ -98,6 +98,12 @@ let wGame = {
         this.guesses--
         document.getElementById("guessLeft").innerText = "Guesses left: "+this.guesses
 
+    },
+
+    showHiddenImage: function(){
+       let image = document.getElementById("wordImage");
+       image.src = this.word.i;
+       image.style.visibility = "hidden";
     }
 
 }
@@ -106,6 +112,7 @@ let wGame = {
 wGame.pickWord();
 wGame.rebuildWord();
 wGame.guessesLeft();
+wGame.showHiddenImage();
 
 document.onkeydown = function(e){
     let key =e.key
