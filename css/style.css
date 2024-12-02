@@ -1,5 +1,33 @@
+body{
+    font-family: "Protest Revolution", sans-serif;
+    background-image: url("../assets/images/cmwallpaper.jpg");
+    color: lavender;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
 #fullBody{
     width: 1024px;
     margin: 0 auto;
     text-align: center;
+}
+
+#wordImage{
+    width: 300px;
+    height: 250px;
+    border: 3px transparent;
+    border-radius: 3rem;
+}
+
+#wGuess{
+    float: left;
+
+}
+
+#lGuess{
+    float: right;
+}
+
+#winLoss{
+    margin: 0px 400px;
+    overflow: auto;
 }
