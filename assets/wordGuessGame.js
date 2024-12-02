@@ -75,7 +75,6 @@ let wGame = {
         if(this.yesGuess.indexOf(key)===-1&&
             this.word.w.indexOf(key)>-1){
             this.yesGuess.push(key)
-            console.log("right letters: "+this.yesGuess)
             this.updateGuesses()
 
         }
@@ -88,8 +87,8 @@ let wGame = {
         if(this.word.w.indexOf(key)===-1&&
            this.noGuess.indexOf(key)===-1){
             this.noGuess.push(key)
-            console.log("wrong letters: "+this.noGuess)
             this.updateGuesses()
+            this.noGuessDisplay()
 
         }
         else{
@@ -147,6 +146,7 @@ let wGame = {
         this.pickWord();
         this.rebuildWord();
         this.guessesLeft(); 
+        this.noGuessDisplay();
     },
 
     gameLoss: function(){
@@ -175,11 +175,36 @@ let wGame = {
             this.displayScore();
         }
 
+    },
+
+    noGuessDisplay: function(){
+       let guess = this.noGuess.map(function(key){
+        return key
+       })
+       .join(" ")
+       document.getElementById("wrongGuess").innerText = guess
+    },
+
+    resetScore: function(){
+
+        this.wCounter = 0;
+        this.lCounter = 0;
+
+    },
+
+    resetButton: function(){
+        this.resetGame();
+        this.resetScore();
+        this.displayScore();
+        this.pauseSong();
+        this.showHiddenImage();
     }
+
 }
 
 
 wGame.startGame();
+
 
 
 document.onkeydown = function(e){
@@ -194,11 +219,8 @@ document.onkeydown = function(e){
         document.getElementById("wrongGuess").innerText = "Please select a valid letter"
     }
 
-    if(key==="z"){
-        wGame.resetWord();
-    }
-    else{
-
-    }
-
 }
+
+document.getElementById("resetGame").addEventListener("click", function(){
+    wGame.resetButton();
+})
